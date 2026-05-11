@@ -1,6 +1,3 @@
-# Modified Advanced RAG Code with Answer Relevance, Hallucination Rate, and Task Success Metrics
-
-```python
 import os
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
