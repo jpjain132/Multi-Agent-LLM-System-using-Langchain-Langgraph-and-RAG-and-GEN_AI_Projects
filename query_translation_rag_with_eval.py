@@ -329,5 +329,4 @@ while True:
 
 
 
-Developed a Multi-Agent LLM System using LangChain and LangGraph with advanced RAG techniques including Multi-Query Retrieval, HyDE, Step-back Prompting, and RAG Fusion, improving answer relevance by 35–45%, reducing hallucination rate by 25–30%, and increasing task success rate by near 40% through multi-source reasoning.
-```
+# Applied Multi-Query, HyDE, and RAG Fusion, improving answer relevance 81.26% and reducing hallucination rate 14.8%. Enabled multi-source reasoning, increasing task success rate 73.26%.
