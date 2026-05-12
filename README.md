@@ -487,6 +487,186 @@ Basic HuggingFace + LangChain integration demos.
 
 ---
 
+---
+
+# 1️⃣4️⃣ rag_conversational_bot_using_chroma.py
+
+## 📌 Purpose
+
+Conversational Retrieval-Augmented Generation (Conversational RAG)
+system using:
+
+- Chroma Vector Database
+- HuggingFace Embeddings
+- DeepSeek LLM
+- LangChain ConversationalRetrievalChain
+- Memory-aware semantic retrieval
+
+This project demonstrates how AI assistants can:
+- remember previous conversations,
+- retrieve relevant document context,
+- maintain long-term semantic continuity,
+- and generate context-aware responses.
+
+---
+
+## ✅ Features
+
+- Persistent ChromaDB vector storage
+- Conversational memory
+- Multi-turn dialogue support
+- Semantic document retrieval
+- Context-aware answering
+- Source document tracing
+- OpenRouter + DeepSeek integration
+
+---
+
+## 🧠 Concepts Demonstrated
+
+### 🔹 Conversational RAG
+Unlike normal RAG systems,
+this chatbot remembers previous user interactions.
+
+### 🔹 Chroma Vector Database
+Stores embeddings persistently on disk for fast retrieval.
+
+### 🔹 ConversationBufferMemory
+Maintains chat history between interactions.
+
+### 🔹 Semantic Search
+Uses embedding similarity to retrieve relevant chunks.
+
+---
+
+# 🔄 Architecture Flow
+
+```text
+Document
+   ↓
+Chunking
+   ↓
+Embeddings
+   ↓
+Chroma Vector Database
+   ↓
+Retriever
+   ↓
+Conversation Memory
+   ↓
+Conversational Retrieval Chain
+   ↓
+LLM (DeepSeek)
+   ↓
+Context-Aware Answer
+```
+
+---
+
+# 📁 Data Flow
+
+## Step 1 — Load Document
+```python
+TextLoader("ol_dump_deletes_2025-06-30.txt")
+```
+
+Loads the external knowledge source.
+
+---
+
+## Step 2 — Chunking
+```python
+RecursiveCharacterTextSplitter
+```
+
+Splits large documents into overlapping semantic chunks.
+
+Purpose:
+- improves retrieval accuracy
+- prevents context overflow
+- reduces hallucinations
+
+---
+
+## Step 3 — Embedding Generation
+```python
+all-MiniLM-L6-v2
+```
+
+Converts chunks into dense semantic vectors.
+
+---
+
+## Step 4 — Chroma Persistence
+```python
+persist_directory="chroma_db"
+```
+
+Stores embeddings permanently for reuse.
+
+---
+
+## Step 5 — Retrieval
+```python
+retriever = vectorstore.as_retriever(k=4)
+```
+
+Fetches top semantically similar chunks.
+
+---
+
+## Step 6 — Memory Integration
+```python
+ConversationBufferMemory
+```
+
+Stores:
+- previous questions
+- previous responses
+- conversational context
+
+This enables follow-up questioning.
+
+---
+
+## Step 7 — Conversational Retrieval Chain
+```python
+ConversationalRetrievalChain.from_llm()
+```
+
+Combines:
+- retrieval
+- memory
+- LLM reasoning
+
+into one intelligent pipeline.
+
+---
+
+# 🛠️ Optimization & Debugging Approaches Used
+
+## ✅ Retrieval Optimization
+- tuned chunk overlap
+- tuned chunk size
+- optimized top-k retrieval
+
+## ✅ Memory Optimization
+- persistent chat history
+- context-aware follow-up retrieval
+
+## ✅ Hallucination Reduction
+- source-grounded retrieval
+- semantic context injection
+- multi-chunk evidence retrieval
+
+## ✅ Debugging
+- printed retrieved source documents
+- verified semantic chunk quality
+- validated retrieval relevance manually
+
+---
+
+
 # 🔗 Interconnection Between Files
 
 ```text
